@@ -1,443 +1,674 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Buldo - Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap');
-        
-        :root {
-            --mercedes-silver: #C0C0C0;
-            --mercedes-black: #000000;
-            --mercedes-teal: #00D2BE;
-            --hacker-green: #00FF41;
-            --dark-bg: #0a0a0a;
+      @import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap");
+
+      :root {
+        --mercedes-silver: #c0c0c0;
+        --mercedes-black: #000000;
+        --mercedes-teal: #00d2be;
+        --hacker-green: #00ff41;
+        --dark-bg: #0a0a0a;
+      }
+
+      body {
+        font-family: "Rajdhani", sans-serif;
+        background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+        color: #ffffff;
+      }
+
+      .orbitron {
+        font-family: "Orbitron", monospace;
+      }
+
+      .matrix-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        opacity: 0.1;
+      }
+
+      .f1-stripe {
+        background: linear-gradient(
+          90deg,
+          var(--mercedes-teal) 0%,
+          var(--mercedes-silver) 50%,
+          var(--mercedes-teal) 100%
+        );
+        height: 4px;
+      }
+
+      .project-card {
+        background: linear-gradient(145deg, #1a1a1a, #2a2a2a);
+        border: 1px solid var(--mercedes-teal);
+        transition: all 0.3s ease;
+      }
+
+      .project-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0, 210, 190, 0.3);
+        border-color: var(--hacker-green);
+      }
+
+      .tech-tag {
+        background: linear-gradient(
+          45deg,
+          var(--mercedes-teal),
+          var(--hacker-green)
+        );
+        color: black;
+        font-weight: 600;
+      }
+
+      .glitch {
+        animation: glitch 2s infinite;
+      }
+
+      @keyframes glitch {
+        0%,
+        100% {
+          transform: translateX(0);
         }
-        
-        body {
-            font-family: 'Rajdhani', sans-serif;
-            background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
-            color: #ffffff;
+        20% {
+          transform: translateX(-2px);
         }
-        
-        .orbitron {
-            font-family: 'Orbitron', monospace;
+        40% {
+          transform: translateX(2px);
         }
-        
-        .matrix-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            opacity: 0.1;
+        60% {
+          transform: translateX(-1px);
         }
-        
-        .f1-stripe {
-            background: linear-gradient(90deg, var(--mercedes-teal) 0%, var(--mercedes-silver) 50%, var(--mercedes-teal) 100%);
-            height: 4px;
+        80% {
+          transform: translateX(1px);
         }
-        
-        .project-card {
-            background: linear-gradient(145deg, #1a1a1a, #2a2a2a);
-            border: 1px solid var(--mercedes-teal);
-            transition: all 0.3s ease;
+      }
+
+      .typing-animation {
+        border-right: 2px solid var(--hacker-green);
+        animation: typing 3s steps(40) infinite, blink 1s infinite;
+      }
+
+      @keyframes typing {
+        0%,
+        50% {
+          width: 0;
         }
-        
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 210, 190, 0.3);
-            border-color: var(--hacker-green);
+        100% {
+          width: 100%;
         }
-        
-        .tech-tag {
-            background: linear-gradient(45deg, var(--mercedes-teal), var(--hacker-green));
-            color: black;
-            font-weight: 600;
+      }
+
+      @keyframes blink {
+        0%,
+        50% {
+          border-color: var(--hacker-green);
         }
-        
-        .glitch {
-            animation: glitch 2s infinite;
+        51%,
+        100% {
+          border-color: transparent;
         }
-        
-        @keyframes glitch {
-            0%, 100% { transform: translateX(0); }
-            20% { transform: translateX(-2px); }
-            40% { transform: translateX(2px); }
-            60% { transform: translateX(-1px); }
-            80% { transform: translateX(1px); }
+      }
+
+      .circuit-pattern {
+        background-image: radial-gradient(
+            circle at 20% 50%,
+            var(--mercedes-teal) 2px,
+            transparent 2px
+          ),
+          radial-gradient(
+            circle at 80% 50%,
+            var(--hacker-green) 2px,
+            transparent 2px
+          );
+        background-size: 100px 50px;
+      }
+
+      .photo-banner {
+        animation: float 6s ease-in-out infinite,
+          glow 3s ease-in-out infinite alternate;
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px);
         }
-        
-        .typing-animation {
-            border-right: 2px solid var(--hacker-green);
-            animation: typing 3s steps(40) infinite, blink 1s infinite;
+        50% {
+          transform: translateY(-20px);
         }
-        
-        @keyframes typing {
-            0%, 50% { width: 0; }
-            100% { width: 100%; }
+      }
+
+      @keyframes glow {
+        0% {
+          box-shadow: 0 0 20px rgba(0, 210, 190, 0.5);
         }
-        
-        @keyframes blink {
-            0%, 50% { border-color: var(--hacker-green); }
-            51%, 100% { border-color: transparent; }
+        100% {
+          box-shadow: 0 0 40px rgba(0, 255, 65, 0.8),
+            0 0 60px rgba(0, 210, 190, 0.4);
         }
-        
-        .circuit-pattern {
-            background-image: 
-                radial-gradient(circle at 20% 50%, var(--mercedes-teal) 2px, transparent 2px),
-                radial-gradient(circle at 80% 50%, var(--hacker-green) 2px, transparent 2px);
-            background-size: 100px 50px;
+      }
+
+      .f1-car {
+        animation: f1-race 8s linear infinite;
+      }
+
+      @keyframes f1-race {
+        0% {
+          transform: translateX(-150px) scale(1);
+          opacity: 0;
         }
-        
-        .photo-banner {
-            animation: float 6s ease-in-out infinite, glow 3s ease-in-out infinite alternate;
+        10% {
+          opacity: 1;
         }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
+        90% {
+          opacity: 1;
         }
-        
-        @keyframes glow {
-            0% { box-shadow: 0 0 20px rgba(0, 210, 190, 0.5); }
-            100% { box-shadow: 0 0 40px rgba(0, 255, 65, 0.8), 0 0 60px rgba(0, 210, 190, 0.4); }
+        100% {
+          transform: translateX(calc(100vw + 50px)) scale(1.2);
+          opacity: 0;
         }
-        
-        .f1-car {
-            animation: f1-race 8s linear infinite;
-        }
-        
-        @keyframes f1-race {
-            0% { 
-                transform: translateX(-150px) scale(1);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
-            100% { 
-                transform: translateX(calc(100vw + 50px)) scale(1.2);
-                opacity: 0;
-            }
-        }
+      }
     </style>
-</head>
-<body class="min-h-screen">
+  </head>
+  <body class="min-h-screen">
     <!-- Matrix Background -->
     <canvas class="matrix-bg" id="matrix"></canvas>
-    
+
     <!-- Navigation -->
-    <nav class="fixed top-0 w-full z-50 bg-black/90 backdrop-blur-sm border-b border-gray-800">
-        <div class="f1-stripe"></div>
-        <div class="container mx-auto px-6 py-4">
-            <div class="flex justify-between items-center">
-                <div class="orbitron text-2xl font-bold text-white">
-                    <span class="text-cyan-400">BULDO</span>
-                    <span class="text-green-400">CODES</span>
-                </div>
-                <div class="hidden md:flex space-x-8">
-                    <a href="#home" class="hover:text-cyan-400 transition-colors">HOME</a>
-                    <a href="#projects" class="hover:text-cyan-400 transition-colors">PROJECTS</a>
-                    <a href="#achievements" class="hover:text-cyan-400 transition-colors">ACHIEVEMENTS</a>
-                    <a href="#about" class="hover:text-cyan-400 transition-colors">ABOUT</a>
-                    <a href="#contact" class="hover:text-cyan-400 transition-colors">CONTACT</a>
-                </div>
-            </div>
+    <nav
+      class="fixed top-0 w-full z-50 bg-black/90 backdrop-blur-sm border-b border-gray-800"
+    >
+      <div class="f1-stripe"></div>
+      <div class="container mx-auto px-6 py-4">
+        <div class="flex justify-between items-center">
+          <div class="orbitron text-2xl font-bold text-white">
+            <span class="text-cyan-400">BULDO</span>
+            <span class="text-green-400">CODES</span>
+          </div>
+          <div class="hidden md:flex space-x-8">
+            <a href="#home" class="hover:text-cyan-400 transition-colors"
+              >HOME</a
+            >
+            <a href="#projects" class="hover:text-cyan-400 transition-colors"
+              >PROJECTS</a
+            >
+            <a
+              href="#achievements"
+              class="hover:text-cyan-400 transition-colors"
+              >ACHIEVEMENTS</a
+            >
+            <a href="#about" class="hover:text-cyan-400 transition-colors"
+              >ABOUT</a
+            >
+            <a href="#contact" class="hover:text-cyan-400 transition-colors"
+              >CONTACT</a
+            >
+          </div>
         </div>
+      </div>
     </nav>
 
     <!-- Hero Section -->
     <section id="home" class="relative">
-        <!-- Banner Background -->
-        <div class="h-80 relative overflow-hidden">
-            <div class="circuit-pattern absolute inset-0 opacity-20"></div>
-            <div class="absolute inset-0 bg-gradient-to-r from-cyan-900/80 via-black/60 to-green-900/80"></div>
-            
-            <!-- F1 Car Animation -->
-            <div class="f1-car absolute top-1/2 z-30">
-                <svg width="120" height="40" viewBox="0 0 120 40" class="fill-cyan-400">
-                    <path d="M10 25 L20 20 L80 20 L90 15 L110 15 L115 20 L110 25 L90 30 L80 25 L20 30 Z"/>
-                    <circle cx="25" cy="30" r="8" class="fill-gray-800 stroke-cyan-400 stroke-2"/>
-                    <circle cx="85" cy="30" r="8" class="fill-gray-800 stroke-cyan-400 stroke-2"/>
-                    <rect x="30" y="18" width="40" height="8" rx="2" class="fill-green-400"/>
-                    <polygon points="70,15 85,15 80,10 75,10" class="fill-cyan-400"/>
-                </svg>
-            </div>
+      <!-- Banner Background -->
+      <div class="h-80 relative overflow-hidden">
+        <div class="circuit-pattern absolute inset-0 opacity-20"></div>
+        <div
+          class="absolute inset-0 bg-gradient-to-r from-cyan-900/80 via-black/60 to-green-900/80"
+        ></div>
+
+        <!-- F1 Car Animation -->
+        <div class="f1-car absolute top-1/2 z-30">
+          <svg
+            width="120"
+            height="40"
+            viewBox="0 0 120 40"
+            class="fill-cyan-400"
+          >
+            <path
+              d="M10 25 L20 20 L80 20 L90 15 L110 15 L115 20 L110 25 L90 30 L80 25 L20 30 Z"
+            />
+            <circle
+              cx="25"
+              cy="30"
+              r="8"
+              class="fill-gray-800 stroke-cyan-400 stroke-2"
+            />
+            <circle
+              cx="85"
+              cy="30"
+              r="8"
+              class="fill-gray-800 stroke-cyan-400 stroke-2"
+            />
+            <rect
+              x="30"
+              y="18"
+              width="40"
+              height="8"
+              rx="2"
+              class="fill-green-400"
+            />
+            <polygon points="70,15 85,15 80,10 75,10" class="fill-cyan-400" />
+          </svg>
         </div>
-        
-        <!-- Profile Section -->
-        <div class="container mx-auto px-6 relative">
-            <!-- Profile Photo positioned like LinkedIn -->
-            <div class="absolute -top-24 left-6">
-                <div class="photo-banner w-48 h-48 rounded-full overflow-hidden shadow-2xl border-4 border-white bg-white">
-                    <img src="assets/profile.JPG" alt="Harshal Poojary" class="w-full h-full object-cover">
-                </div>
-            </div>
-            
-            <!-- Content Area -->
-            <div class="pt-32 pb-16">
-                <div class="ml-60">
-                    <div class="orbitron text-4xl md:text-6xl font-black mb-4">
-                        <span class="text-white glitch">HARSHAL</span>
-                        <span class="text-cyan-400 ml-2">POOJARY</span>
-                    </div>
-                    <div class="text-xl md:text-2xl mb-4 text-gray-300">
-                        <span class="typing-animation overflow-hidden whitespace-nowrap">Student • Developer • Innovator</span>
-                    </div>
-                    <div class="text-lg mb-6 text-green-400 orbitron">
-                        SJEC MANGALORE • TECH ENTHUSIAST • AERO MODELING
-                    </div>
-                    <div class="text-gray-400 mb-8">
-                        Vice Design Head at SJEC Aero | Machine Learning Enthusiast | Full-Stack Developer
-                    </div>
-                    <button onclick="document.getElementById('projects').scrollIntoView({behavior: 'smooth'})" 
-                            class="bg-gradient-to-r from-cyan-500 to-green-500 text-black px-8 py-4 rounded-lg font-bold hover:scale-105 transition-transform orbitron">
-                        EXPLORE PROJECTS
-                    </button>
-                </div>
-            </div>
+      </div>
+
+      <!-- Profile Section -->
+      <div class="container mx-auto px-6 relative">
+        <!-- Profile Photo positioned like LinkedIn -->
+        <div class="absolute -top-24 left-6">
+          <div
+            class="photo-banner w-48 h-48 rounded-full overflow-hidden shadow-2xl border-4 border-white bg-white"
+          >
+            <img
+              src="assets/profile.JPG"
+              alt="Harshal Poojary"
+              class="w-full h-full object-cover"
+            />
+          </div>
         </div>
+
+        <!-- Content Area -->
+        <div class="pt-32 pb-16">
+          <div class="ml-60">
+            <div class="orbitron text-4xl md:text-6xl font-black mb-4">
+              <span class="text-white glitch">HARSHAL</span>
+              <span class="text-cyan-400 ml-2">POOJARY</span>
+            </div>
+            <div class="text-xl md:text-2xl mb-4 text-gray-300">
+              <span class="typing-animation overflow-hidden whitespace-nowrap"
+                >Student • Developer • Innovator</span
+              >
+            </div>
+            <div class="text-lg mb-6 text-green-400 orbitron">
+              SJEC MANGALORE • TECH ENTHUSIAST • AERO MODELING
+            </div>
+            <div class="text-gray-400 mb-8">
+              Vice Design Head at SJEC Aero | Machine Learning Enthusiast |
+              Full-Stack Developer
+            </div>
+            <button
+              onclick="document.getElementById('projects').scrollIntoView({behavior: 'smooth'})"
+              class="bg-gradient-to-r from-cyan-500 to-green-500 text-black px-8 py-4 rounded-lg font-bold hover:scale-105 transition-transform orbitron"
+            >
+              EXPLORE PROJECTS
+            </button>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- Projects Section -->
     <section id="projects" class="py-20 px-6">
-        <div class="container mx-auto">
-            <h2 class="orbitron text-4xl font-bold text-center mb-16 text-cyan-400">
-                <span class="border-b-4 border-green-400 pb-2">PROJECTS</span>
-            </h2>
-            
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Landmine Detection -->
-                <div class="project-card rounded-lg p-6">
-                    <div class="flex items-center mb-4">
-                        <div class="w-3 h-3 bg-green-400 rounded-full mr-3 animate-pulse"></div>
-                        <h3 class="orbitron text-xl font-bold text-cyan-400">LANDMINE DETECTION SYSTEM</h3>
-                    </div>
-                    <p class="text-gray-300 mb-4">Advanced ML-powered landmine detection using sonar data analysis. Implementing cutting-edge algorithms for enhanced safety and accuracy.</p>
-                    <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="tech-tag px-3 py-1 rounded-full text-xs">MACHINE LEARNING</span>
-                        <span class="tech-tag px-3 py-1 rounded-full text-xs">SONAR DATA</span>
-                        <span class="tech-tag px-3 py-1 rounded-full text-xs">PYTHON</span>
-                    </div>
-                    <div class="text-green-400 orbitron text-sm">STATUS: COMPLETED</div>
-                </div>
+      <div class="container mx-auto">
+        <h2 class="orbitron text-4xl font-bold text-center mb-16 text-cyan-400">
+          <span class="border-b-4 border-green-400 pb-2">PROJECTS</span>
+        </h2>
 
-                <!-- Hotel Management -->
-                <div class="project-card rounded-lg p-6">
-                    <div class="flex items-center mb-4">
-                        <div class="w-3 h-3 bg-green-400 rounded-full mr-3 animate-pulse"></div>
-                        <h3 class="orbitron text-xl font-bold text-cyan-400">HOTEL MANAGEMENT SYSTEM</h3>
-                    </div>
-                    <p class="text-gray-300 mb-4">Full-stack hotel management solution with MySQL database integration. Features booking, room management, and customer analytics.</p>
-                    <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="tech-tag px-3 py-1 rounded-full text-xs">MYSQL</span>
-                        <span class="tech-tag px-3 py-1 rounded-full text-xs">JAVASCRIPT</span>
-                        <span class="tech-tag px-3 py-1 rounded-full text-xs">HTML/CSS</span>
-                    </div>
-                    <div class="text-green-400 orbitron text-sm">STATUS: COMPLETED</div>
-                </div>
-
-                <!-- Gunshot Detection -->
-                <div class="project-card rounded-lg p-6">
-                    <div class="flex items-center mb-4">
-                        <div class="w-3 h-3 bg-yellow-400 rounded-full mr-3 animate-pulse"></div>
-                        <h3 class="orbitron text-xl font-bold text-cyan-400">REAL-TIME GUNSHOT DETECTION</h3>
-                    </div>
-                    <p class="text-gray-300 mb-4">Revolutionary real-time audio analysis system for gunshot detection and alert mechanisms. Enhancing public safety through AI.</p>
-                    <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="tech-tag px-3 py-1 rounded-full text-xs">REAL-TIME AI</span>
-                        <span class="tech-tag px-3 py-1 rounded-full text-xs">AUDIO PROCESSING</span>
-                        <span class="tech-tag px-3 py-1 rounded-full text-xs">PYTHON</span>
-                    </div>
-                    <div class="text-yellow-400 orbitron text-sm">STATUS: ONGOING</div>
-                </div>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Landmine Detection -->
+          <div class="project-card rounded-lg p-6">
+            <div class="flex items-center mb-4">
+              <div
+                class="w-3 h-3 bg-green-400 rounded-full mr-3 animate-pulse"
+              ></div>
+              <h3 class="orbitron text-xl font-bold text-cyan-400">
+                LANDMINE DETECTION SYSTEM
+              </h3>
             </div>
+            <p class="text-gray-300 mb-4">
+              Advanced ML-powered landmine detection using sonar data analysis.
+              Implementing cutting-edge algorithms for enhanced safety and
+              accuracy.
+            </p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="tech-tag px-3 py-1 rounded-full text-xs"
+                >MACHINE LEARNING</span
+              >
+              <span class="tech-tag px-3 py-1 rounded-full text-xs"
+                >SONAR DATA</span
+              >
+              <span class="tech-tag px-3 py-1 rounded-full text-xs"
+                >PYTHON</span
+              >
+            </div>
+            <div class="text-green-400 orbitron text-sm">STATUS: COMPLETED</div>
+          </div>
+
+          <!-- Hotel Management -->
+          <div class="project-card rounded-lg p-6">
+            <div class="flex items-center mb-4">
+              <div
+                class="w-3 h-3 bg-green-400 rounded-full mr-3 animate-pulse"
+              ></div>
+              <h3 class="orbitron text-xl font-bold text-cyan-400">
+                HOTEL MANAGEMENT SYSTEM
+              </h3>
+            </div>
+            <p class="text-gray-300 mb-4">
+              Full-stack hotel management solution with MySQL database
+              integration. Features booking, room management, and customer
+              analytics.
+            </p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="tech-tag px-3 py-1 rounded-full text-xs">MYSQL</span>
+              <span class="tech-tag px-3 py-1 rounded-full text-xs"
+                >JAVASCRIPT</span
+              >
+              <span class="tech-tag px-3 py-1 rounded-full text-xs"
+                >HTML/CSS</span
+              >
+            </div>
+            <div class="text-green-400 orbitron text-sm">STATUS: COMPLETED</div>
+          </div>
+
+          <!-- Gunshot Detection -->
+          <div class="project-card rounded-lg p-6">
+            <div class="flex items-center mb-4">
+              <div
+                class="w-3 h-3 bg-yellow-400 rounded-full mr-3 animate-pulse"
+              ></div>
+              <h3 class="orbitron text-xl font-bold text-cyan-400">
+                REAL-TIME GUNSHOT DETECTION
+              </h3>
+            </div>
+            <p class="text-gray-300 mb-4">
+              Revolutionary real-time audio analysis system for gunshot
+              detection and alert mechanisms. Enhancing public safety through
+              AI.
+            </p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="tech-tag px-3 py-1 rounded-full text-xs"
+                >REAL-TIME AI</span
+              >
+              <span class="tech-tag px-3 py-1 rounded-full text-xs"
+                >AUDIO PROCESSING</span
+              >
+              <span class="tech-tag px-3 py-1 rounded-full text-xs"
+                >PYTHON</span
+              >
+            </div>
+            <div class="text-yellow-400 orbitron text-sm">STATUS: ONGOING</div>
+          </div>
         </div>
+      </div>
     </section>
 
     <!-- Achievements Section -->
-    <section id="achievements" class="py-20 px-6 bg-gradient-to-r from-gray-900 to-black">
-        <div class="container mx-auto">
-            <h2 class="orbitron text-4xl font-bold text-center mb-16 text-cyan-400">
-                <span class="border-b-4 border-green-400 pb-2">ACHIEVEMENTS</span>
-            </h2>
-            
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="project-card rounded-lg p-8">
-                    <div class="flex items-center mb-4">
-                        <div class="text-4xl mr-4">🏆</div>
-                        <h3 class="orbitron text-2xl font-bold text-green-400">HACKFEST 2025</h3>
-                    </div>
-                    <p class="text-gray-300">Participated in one of the most prestigious hackathons, showcasing innovative solutions and collaborative problem-solving skills.</p>
-                </div>
+    <section
+      id="achievements"
+      class="py-20 px-6 bg-gradient-to-r from-gray-900 to-black"
+    >
+      <div class="container mx-auto">
+        <h2 class="orbitron text-4xl font-bold text-center mb-16 text-cyan-400">
+          <span class="border-b-4 border-green-400 pb-2">ACHIEVEMENTS</span>
+        </h2>
 
-                <div class="project-card rounded-lg p-8">
-                    <div class="flex items-center mb-4">
-                        <div class="text-4xl mr-4">✈️</div>
-                        <h3 class="orbitron text-2xl font-bold text-green-400">AEROPHILIA 2024</h3>
-                    </div>
-                    <p class="text-gray-300">Active participant in aerospace competitions, demonstrating expertise in aerodynamics and UAV technologies.</p>
-                </div>
+        <div class="grid md:grid-cols-2 gap-8">
+          <div class="project-card rounded-lg p-8">
+            <div class="flex items-center mb-4">
+              <div class="text-4xl mr-4">🏆</div>
+              <h3 class="orbitron text-2xl font-bold text-green-400">
+                HACKFEST 2025
+              </h3>
             </div>
+            <p class="text-gray-300">
+              Participated in one of the most prestigious hackathons, showcasing
+              innovative solutions and collaborative problem-solving skills.
+            </p>
+          </div>
 
-            <div class="text-center mt-12">
-                <div class="orbitron text-xl text-cyan-400 mb-4">READY FOR MORE CHALLENGES</div>
-                <p class="text-gray-300 text-lg">Excited to participate in upcoming competitions and hackathons. Always pushing boundaries!</p>
+          <div class="project-card rounded-lg p-8">
+            <div class="flex items-center mb-4">
+              <div class="text-4xl mr-4">✈️</div>
+              <h3 class="orbitron text-2xl font-bold text-green-400">
+                AEROPHILIA 2024
+              </h3>
             </div>
+            <p class="text-gray-300">
+              Active participant in aerospace competitions, demonstrating
+              expertise in aerodynamics and UAV technologies.
+            </p>
+          </div>
         </div>
+
+        <div class="text-center mt-12">
+          <div class="orbitron text-xl text-cyan-400 mb-4">
+            READY FOR MORE CHALLENGES
+          </div>
+          <p class="text-gray-300 text-lg">
+            Excited to participate in upcoming competitions and hackathons.
+            Always pushing boundaries!
+          </p>
+        </div>
+      </div>
     </section>
 
     <!-- About Section -->
     <section id="about" class="py-20 px-6">
-        <div class="container mx-auto">
-            <h2 class="orbitron text-4xl font-bold text-center mb-16 text-cyan-400">
-                <span class="border-b-4 border-green-400 pb-2">ABOUT</span>
-            </h2>
-            
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div>
-                    <h3 class="orbitron text-2xl font-bold mb-6 text-green-400">STUDENT • INNOVATOR • LEADER</h3>
-                    <p class="text-gray-300 text-lg mb-6">
-                        Currently pursuing my studies at SJEC Mangalore, I'm passionate about leveraging technology to solve real-world problems. My journey spans from machine learning applications to full-stack development.
-                    </p>
-                    <p class="text-gray-300 text-lg mb-6">
-                        As Vice Design Head of SJEC Aero, I lead innovative aerospace projects and foster a culture of technical excellence. My love for aero modeling and UAVs drives me to explore the intersection of software and hardware.
-                    </p>
-                </div>
-                
-                <div class="project-card rounded-lg p-8">
-                    <h4 class="orbitron text-xl font-bold mb-4 text-cyan-400">LEADERSHIP & INVOLVEMENT</h4>
-                    <div class="space-y-4">
-                        <div class="flex items-center">
-                            <div class="w-2 h-2 bg-green-400 rounded-full mr-3"></div>
-                            <span>Vice Design Head - SJEC Aero</span>
-                        </div>
-                        <div class="flex items-center">
-                            <div class="w-2 h-2 bg-green-400 rounded-full mr-3"></div>
-                            <span>Active Member - Various Tech Clubs</span>
-                        </div>
-                        <div class="flex items-center">
-                            <div class="w-2 h-2 bg-green-400 rounded-full mr-3"></div>
-                            <span>Aero Modeling Enthusiast</span>
-                        </div>
-                        <div class="flex items-center">
-                            <div class="w-2 h-2 bg-green-400 rounded-full mr-3"></div>
-                            <span>UAV Technology Explorer</span>
-                        </div>
-                    </div>
-                </div>
+      <div class="container mx-auto">
+        <h2 class="orbitron text-4xl font-bold text-center mb-16 text-cyan-400">
+          <span class="border-b-4 border-green-400 pb-2">ABOUT</span>
+        </h2>
+
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+          <div>
+            <h3 class="orbitron text-2xl font-bold mb-6 text-green-400">
+              STUDENT • INNOVATOR • LEADER
+            </h3>
+            <p class="text-gray-300 text-lg mb-6">
+              Currently pursuing my studies at SJEC Mangalore, I'm passionate
+              about leveraging technology to solve real-world problems. My
+              journey spans from machine learning applications to full-stack
+              development.
+            </p>
+            <p class="text-gray-300 text-lg mb-6">
+              As Vice Design Head of SJEC Aero, I lead innovative aerospace
+              projects and foster a culture of technical excellence. My love for
+              aero modeling and UAVs drives me to explore the intersection of
+              software and hardware.
+            </p>
+          </div>
+
+          <div class="project-card rounded-lg p-8">
+            <h4 class="orbitron text-xl font-bold mb-4 text-cyan-400">
+              LEADERSHIP & INVOLVEMENT
+            </h4>
+            <div class="space-y-4">
+              <div class="flex items-center">
+                <div class="w-2 h-2 bg-green-400 rounded-full mr-3"></div>
+                <span>Vice Design Head - SJEC Aero</span>
+              </div>
+              <div class="flex items-center">
+                <div class="w-2 h-2 bg-green-400 rounded-full mr-3"></div>
+                <span>Active Member - Various Tech Clubs</span>
+              </div>
+              <div class="flex items-center">
+                <div class="w-2 h-2 bg-green-400 rounded-full mr-3"></div>
+                <span>Aero Modeling Enthusiast</span>
+              </div>
+              <div class="flex items-center">
+                <div class="w-2 h-2 bg-green-400 rounded-full mr-3"></div>
+                <span>UAV Technology Explorer</span>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-20 px-6 bg-gradient-to-r from-black to-gray-900">
-        <div class="container mx-auto text-center">
-            <h2 class="orbitron text-4xl font-bold mb-16 text-cyan-400">
-                <span class="border-b-4 border-green-400 pb-2">CONNECT</span>
-            </h2>
-            
-            <div class="project-card rounded-lg p-8 max-w-2xl mx-auto">
-                <div class="orbitron text-2xl font-bold mb-6 text-green-400">LET'S BUILD THE FUTURE TOGETHER</div>
-                <p class="text-gray-300 text-lg mb-8">
-                    Ready to collaborate on innovative projects or discuss opportunities in tech, aerospace, or machine learning.
-                </p>
-                
-                <div class="flex justify-center space-x-8 mb-8">
-                    <div class="text-center">
-                        <div class="text-2xl mb-2">📧</div>
-                        <div class="text-cyan-400">EMAIL</div>
-                    </div>
-                    <div class="text-center">
-                        <div class="text-2xl mb-2">💼</div>
-                        <div class="text-cyan-400">LINKEDIN</div>
-                    </div>
-                    <div class="text-center">
-                        <div class="text-2xl mb-2">🐙</div>
-                        <div class="text-cyan-400">GITHUB</div>
-                    </div>
-                </div>
-                
-                <div class="orbitron text-green-400">
-                    SJEC MANGALORE • ALWAYS INNOVATING
-                </div>
-            </div>
+    <section
+      id="contact"
+      class="py-20 px-6 bg-gradient-to-r from-black to-gray-900"
+    >
+      <div class="container mx-auto text-center">
+        <h2 class="orbitron text-4xl font-bold mb-16 text-cyan-400">
+          <span class="border-b-4 border-green-400 pb-2">CONNECT</span>
+        </h2>
+
+        <div class="project-card rounded-lg p-8 max-w-2xl mx-auto">
+          <div class="orbitron text-2xl font-bold mb-6 text-green-400">
+            LET'S BUILD THE FUTURE TOGETHER
+          </div>
+          <p class="text-gray-300 text-lg mb-8">
+            Ready to collaborate on innovative projects or discuss opportunities
+            in tech, aerospace, or machine learning.
+          </p>
+
+          <div class="flex justify-center space-x-8 mb-8">
+            <!-- Email -->
+            <a
+             <a href="https://mail.google.com/mail/?view=cm&fs=1&to=poojaryharshal98@gmail.com" 
+   target="_blank" 
+   class="text-center hover:scale-110 transition-transform">
+    <div class="text-2xl mb-2">📧</div>
+    <div class="text-cyan-400">EMAIL</div>
+</a>
+
+            </a>
+
+            <!-- LinkedIn -->
+            <a
+              href="https://www.linkedin.com/in/harshal-s-poojary-661237297?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+              target="_blank"
+              class="text-center hover:scale-110 transition-transform"
+            >
+              <div class="text-2xl mb-2">💼</div>
+              <div class="text-cyan-400">LINKEDIN</div>
+            </a>
+
+            <!-- GitHub -->
+            <a
+              href="https://github.com/harshalsp22"
+              target="_blank"
+              class="text-center hover:scale-110 transition-transform"
+            >
+              <div class="text-2xl mb-2">🐙</div>
+              <div class="text-cyan-400">GITHUB</div>
+            </a>
+          </div>
+
+          <div class="orbitron text-green-400">
+            SJEC MANGALORE • ALWAYS INNOVATING
+          </div>
         </div>
+      </div>
     </section>
 
     <!-- Footer -->
     <footer class="py-8 px-6 border-t border-gray-800">
-        <div class="f1-stripe mb-4"></div>
-        <div class="container mx-auto text-center">
-            <div class="orbitron text-lg font-bold mb-2">
-                <span class="text-cyan-400">BULDO</span>
-                <span class="text-green-400">CODES</span>
-            </div>
-            <p class="text-gray-400">© 2024 • Engineered with passion • SJEC Mangalore</p>
+      <div class="f1-stripe mb-4"></div>
+      <div class="container mx-auto text-center">
+        <div class="orbitron text-lg font-bold mb-2">
+          <span class="text-cyan-400">BULDO</span>
+          <span class="text-green-400">CODES</span>
         </div>
+        <p class="text-gray-400">
+          © 2024 • Engineered with passion • SJEC Mangalore
+        </p>
+      </div>
     </footer>
 
     <script>
-        // Matrix Rain Effect
-        const canvas = document.getElementById('matrix');
-        const ctx = canvas.getContext('2d');
+      // Matrix Rain Effect
+      const canvas = document.getElementById("matrix");
+      const ctx = canvas.getContext("2d");
 
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      const matrix =
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()*&^%+-/~{[|`]}";
+      const matrixArray = matrix.split("");
+
+      const fontSize = 10;
+      const columns = canvas.width / fontSize;
+
+      const drops = [];
+      for (let x = 0; x < columns; x++) {
+        drops[x] = 1;
+      }
+
+      function draw() {
+        ctx.fillStyle = "rgba(0, 0, 0, 0.04)";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        ctx.fillStyle = "#00FF41";
+        ctx.font = fontSize + "px monospace";
+
+        for (let i = 0; i < drops.length; i++) {
+          const text =
+            matrixArray[Math.floor(Math.random() * matrixArray.length)];
+          ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+          if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+            drops[i] = 0;
+          }
+          drops[i]++;
+        }
+      }
+
+      setInterval(draw, 35);
+
+      // Smooth scrolling for navigation
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          document.querySelector(this.getAttribute("href")).scrollIntoView({
+            behavior: "smooth",
+          });
+        });
+      });
+
+      // Resize canvas on window resize
+      window.addEventListener("resize", () => {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
-
-        const matrix = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()*&^%+-/~{[|`]}";
-        const matrixArray = matrix.split("");
-
-        const fontSize = 10;
-        const columns = canvas.width / fontSize;
-
-        const drops = [];
-        for(let x = 0; x < columns; x++) {
-            drops[x] = 1;
-        }
-
-        function draw() {
-            ctx.fillStyle = 'rgba(0, 0, 0, 0.04)';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-            ctx.fillStyle = '#00FF41';
-            ctx.font = fontSize + 'px monospace';
-
-            for(let i = 0; i < drops.length; i++) {
-                const text = matrixArray[Math.floor(Math.random() * matrixArray.length)];
-                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-
-                if(drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-                    drops[i] = 0;
-                }
-                drops[i]++;
-            }
-        }
-
-        setInterval(draw, 35);
-
-        // Smooth scrolling for navigation
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-
-        // Resize canvas on window resize
-        window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        });
+      });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96388db042d9e084',t:'MTc1MzI0NjE5MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+    <script>
+      (function () {
+        function c() {
+          var b = a.contentDocument || a.contentWindow.document;
+          if (b) {
+            var d = b.createElement("script");
+            d.innerHTML =
+              "window.__CF$cv$params={r:'96388db042d9e084',t:'MTc1MzI0NjE5MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";
+            b.getElementsByTagName("head")[0].appendChild(d);
+          }
+        }
+        if (document.body) {
+          var a = document.createElement("iframe");
+          a.height = 1;
+          a.width = 1;
+          a.style.position = "absolute";
+          a.style.top = 0;
+          a.style.left = 0;
+          a.style.border = "none";
+          a.style.visibility = "hidden";
+          document.body.appendChild(a);
+          if ("loading" !== document.readyState) c();
+          else if (window.addEventListener)
+            document.addEventListener("DOMContentLoaded", c);
+          else {
+            var e = document.onreadystatechange || function () {};
+            document.onreadystatechange = function (b) {
+              e(b);
+              "loading" !== document.readyState &&
+                ((document.onreadystatechange = e), c());
+            };
+          }
+        }
+      })();
+    </script>
+  </body>
 </html>
